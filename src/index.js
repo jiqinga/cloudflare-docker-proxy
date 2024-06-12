@@ -1,14 +1,12 @@
-addEventListener("fetch"， (event) => {
+addEventListener("fetch", (event) => {
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
 });
 
-// const routes = {
-// "cloudflare-docker-proxy.jiqinga.workers.dev": "https://registry-1.docker.io",
-// };
 const routes = {
   "${workername}.${username}.workers.dev/": "https://registry-1.docker.io",
 };
+
 function routeByHosts(host) {
   if (host in routes) {
     return routes[host];
